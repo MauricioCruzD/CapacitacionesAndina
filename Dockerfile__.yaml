@@ -1,0 +1,18 @@
+# Utilizar la imagen de Apache como base
+FROM php:8.3.7RC1-apache
+
+# Copiar la configuración de Apache
+# COPY apache/httpd.conf /etc/apache2/apache2.conf
+
+# Copiar la configuración de PHP si es necesario
+# COPY php/php.ini /usr/local/etc/php/php.ini
+
+WORKDIR /usr/local/apache2/htdocs/Capacitaciones/
+
+COPY /capacitaciones /var/www/html/
+
+# Exponer el puerto 80
+EXPOSE 80
+
+# Comando para iniciar Apache
+CMD ["apache2-foreground"]

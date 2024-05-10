@@ -1,0 +1,17 @@
+# utiliser l'image officielle de PHP
+FROM php:8.3.7RC1-zts-alpine3.19
+
+# Définir le répertoire de travail
+WORKDIR /app
+
+# Copier les fichiers du projet
+COPY . /app
+
+# Installer les dépendances
+# RUN composer install --no-dev
+
+# Exposer le port 9000
+EXPOSE 9000
+
+# Démarrer le serveur PHP
+CMD ["php", "-S", "0.0.0.0:9000"]

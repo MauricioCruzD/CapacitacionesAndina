@@ -1,0 +1,28 @@
+services:
+  php:
+    build: 
+      context: ./php
+      dockerfile: Dockerfile.yaml
+    ports:
+      - "9000:9000"
+
+  apache:
+    build: 
+      context: ./apache
+      dockerfile: Dockerfile.yaml
+    ports:
+      - "80:80"
+    depends_on:
+      - php
+    volumes:
+      # - ./app:/app
+      - ./capacitaciones:/var/www/html
+  
+  # capacitaciones:
+  #   build:
+  #     context: ./capacitaciones
+  #     #dockerfile: Dockerfile.yaml
+  #   ports:
+  #     - "8080:80"
+  #   volumes:
+  #     - ./capacitaciones:/var/www/html

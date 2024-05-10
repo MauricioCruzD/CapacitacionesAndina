@@ -1,0 +1,10 @@
+FROM php:8.3.7RC1-zts-alpine3.19
+
+# Copiar los archivos PHP al directorio de trabajo del contenedor
+COPY ./capacitaciones /var/www/html
+
+# Exponer el puerto 80 para acceder a la página web
+EXPOSE 80
+
+# Comando para iniciar el servidor web PHP incorporado
+CMD ["php", "-S", "0.0.0.0:80", "-t", "/var/www/html"]

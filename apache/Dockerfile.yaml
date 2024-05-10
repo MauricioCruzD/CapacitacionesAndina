@@ -1,0 +1,31 @@
+# # Dockerfile para el contenedor de Apache
+
+# # Utilizar la imagen de Apache como base
+# FROM httpd:2.4.59-alpine3.19
+
+# COPY ../Capacitaciones /usr/local/apache2/htdocs
+
+# # Configuración específica de Apache, configuración de proxy inverso, etc.
+# # Aquí puedes configurar Apache para que actúe como proxy inverso y pase las solicitudes PHP al contenedor de PHP
+# # Puedes necesitar instalar módulos adicionales de Apache o realizar otras configuraciones según tus necesidades
+# RUN sed -i '/LoadModule proxy_module/s/^#//g' /usr/local/apache2/conf/httpd.conf
+# RUN sed -i '/LoadModule proxy_http_module/s/^#//g' /usr/local/apache2/conf/httpd.conf
+# RUN echo 'ProxyPassMatch ^/(.*\.php(/.*)?)$ http://php:9000/$1' >> /usr/local/apache2/conf/httpd.conf
+# RUN echo 'ProxyPassReverse / http://php:9000/' >> /usr/local/apache2/conf/httpd.conf
+
+# utiliser l'image officielle d'Apache
+FROM httpd:2.4.59-alpine3.19
+
+# Définir le répertoire de travail
+WORKDIR /usr/local/apache2
+
+# Copier les fichiers de configuration
+# COPY apache2.conf /usr/local/apache2/conf/httpd.conf
+
+COPY capacitaciones /usr/local/apache2/htdocs
+
+# Exposer le port 80
+EXPOSE 80
+
+# Démarrer le serveur Apache
+CMD ["httpd", "-D", "FOREGROUND"]

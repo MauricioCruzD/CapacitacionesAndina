@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.yaml
+    image: php-docker
+    network_mode: host
+    container_name: php_docker
+    restart: always
+    ports:
+      - 8085:8000
+    volumes:
+      - ./miVolumen:/var/www/html/tmp/      
